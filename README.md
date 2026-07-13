@@ -35,15 +35,31 @@ FruitDeepLearning-Classifier/
     └── reduce_dataset.py      # subsamples each class folder to N images
 ```
 
+## Prerequisites
+
+You'll need **Kaggle API credentials** so the notebook can download the dataset:
+
+1. Sign in at [kaggle.com](https://www.kaggle.com/) → **Account** → **Create New API Token** → downloads `kaggle.json`.
+2. Drop it into your OS's kaggle config folder:
+   - **Linux/macOS:** `~/.kaggle/kaggle.json`
+   - **Windows:** `%USERPROFILE%\.kaggle\kaggle.json`
+3. Restrict the file's permissions (Linux/macOS only): `chmod 600 ~/.kaggle/kaggle.json`.
+
+If you're on **Google Colab**, upload `kaggle.json` when the notebook prompts you — no manual placement needed.
+
+A **CUDA-capable GPU** is recommended but not required — the scripts fall back to CPU automatically. Training on CPU is significantly slower (Colab's free-tier GPU is more than enough).
+
 ## Quickest path — run the notebook
 
 Open [`train_and_evaluate.ipynb`](./train_and_evaluate.ipynb) in Jupyter, Colab, or VS Code. It:
 
 1. Installs the required packages.
-2. Downloads the Kaggle dataset with `kagglehub` (needs `~/.kaggle/kaggle.json` — grab one at *Kaggle → Account → Create New API Token*).
+2. Downloads the Kaggle dataset via `kagglehub` (using the credentials from the Prerequisites section above).
 3. Builds train/val splits with augmentation on the training half only.
 4. Loads a pretrained backbone (MobileNet-V2 or EfficientNet-V2-S — toggle via the `BACKBONE` variable), freezes it, and trains a fresh classifier head.
 5. Plots loss/accuracy curves and runs a top-3 prediction on a sample image.
+
+> **Note on committed outputs:** the notebook is committed *without* cell outputs. The published version doesn't ship a trained `best_model.pth` — you generate one by running the notebook end-to-end on your own machine after the setup above.
 
 ## Dataset
 
