@@ -25,14 +25,25 @@ Standard ImageNet preprocessing: resize → center-crop to 224×224 → normaliz
 
 ```
 FruitDeepLearning-Classifier/
+├── train_and_evaluate.ipynb   # end-to-end notebook: Kaggle download → train → eval → predict
 ├── EfficientNetV2/
-│   ├── main.py         # transfer-learning training loop
-│   └── predict.py      # single-image inference with best_model.pth
+│   ├── main.py                # transfer-learning training loop
+│   └── predict.py             # single-image inference with best_model.pth
 └── MobileNetV2/
-    ├── main.py         # transfer-learning training loop
-    ├── predict.py      # single-image inference
-    └── reduce_dataset.py  # subsamples each class folder to N images
+    ├── main.py                # transfer-learning training loop
+    ├── predict.py             # single-image inference
+    └── reduce_dataset.py      # subsamples each class folder to N images
 ```
+
+## Quickest path — run the notebook
+
+Open [`train_and_evaluate.ipynb`](./train_and_evaluate.ipynb) in Jupyter, Colab, or VS Code. It:
+
+1. Installs the required packages.
+2. Downloads the Kaggle dataset with `kagglehub` (needs `~/.kaggle/kaggle.json` — grab one at *Kaggle → Account → Create New API Token*).
+3. Builds train/val splits with augmentation on the training half only.
+4. Loads a pretrained backbone (MobileNet-V2 or EfficientNet-V2-S — toggle via the `BACKBONE` variable), freezes it, and trains a fresh classifier head.
+5. Plots loss/accuracy curves and runs a top-3 prediction on a sample image.
 
 ## Dataset
 
