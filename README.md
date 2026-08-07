@@ -100,3 +100,8 @@ python predict.py         # loads best_model.pth and classifies the test image
 Point the `image_path` in `predict.py` at your own image before running.
 
 > The training scripts assume a CUDA-capable GPU when available — they fall back to CPU automatically, though training on CPU will be slow.
+
+## 🔗 More
+
+- Author: [@pop123-ux](https://github.com/pop123-ux)
+- Medium write-ups: [medium.com/@Pop123](https://medium.com/@Pop123)
